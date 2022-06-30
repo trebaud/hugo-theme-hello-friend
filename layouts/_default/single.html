@@ -82,10 +82,16 @@
       {{ end }}
     {{ end }}
 
-    {{ if not (eq .Params.Comments "false") }}
-      {{ if or (eq .Type $.Site.Params.contentTypeName) (.Params.Comments) }}
-        {{ partial "comments.html" . }}
-      {{ end }}
-    {{ end }}
+    {{- if .Site.Params.EnableSharingButtons }}
+    <hr />
+    <div class="sharing-buttons">
+      {{ partial "sharing-buttons.html" . }}
+    </div>
+    {{- end }}
+
+    {{- if .Site.Params.EnableComments }}
+      {{ partial "comments.html" . }}
+    {{- end }}
+
   </div>
 {{ end }}
