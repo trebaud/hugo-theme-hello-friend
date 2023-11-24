@@ -83,14 +83,18 @@
     {{ end }}
 
     {{- if .Site.Params.EnableSharingButtons }}
-    <hr />
-    <div class="sharing-buttons">
-      {{ partial "sharing-buttons.html" . }}
-    </div>
+    {{ if eq .Type $contentTypeName }}
+      <hr />
+      <div class="sharing-buttons">
+        {{ partial "sharing-buttons.html" . }}
+      </div>
+    {{- end }}
     {{- end }}
 
     {{- if .Site.Params.EnableComments }}
+    {{ if eq .Type $contentTypeName }}
       {{ partial "comments.html" . }}
+    {{- end }}
     {{- end }}
 
   </div>
